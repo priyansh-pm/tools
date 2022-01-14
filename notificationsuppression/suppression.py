@@ -52,13 +52,3 @@ def checker(cam_name, v_type):
     except Exception:
         creator(cam_name,v_type,0)
         return True
-
-array1 = ['Social Distance','Proximity To dangerous Machines','PPE','Mask','Person Near Edge','Person Under Load','Vehicle Under Load']
-for i in range(1,11):
-    length = randrange(len(array1))
-    print(length)
-    cam = 'cam' + str(i)
-    for j in range(length):
-        fact = checker(cam, array1[j])
-
-print(fact)
