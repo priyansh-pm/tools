@@ -7,16 +7,20 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: pip3 install -r requirements.txt
-      - run: python3 notificationsuppression/suppression.py
+      - run: python3 -m virtualenv .
+      - run: source bin/activate
+      - run: pip install -r requirements.txt
+      - run: python notificationsuppression/suppression.py
   test:
     working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: pip3 install -r requirements.txt
-      - run: python3 notificationsuppression/suppressiontest.py
+      - run: python3 -m virtualenv .
+      - run: source bin/activate
+      - run: pip install -r requirements.txt
+      - run: python notificationsuppression/suppressiontest.py
 
 workflows:
   build_and_test:
