@@ -7,19 +7,19 @@ class suppressor:
         self.v_type = v_type
 
     def creation(self):
-        with open('time.yaml', 'r', encoding='utf-8') as rfile:
+        with open('notificationsuppression/time.yaml', 'r', encoding='utf-8') as rfile:
             violation_list = yaml.load(rfile, Loader=yaml.FullLoader)
         try:
             len(violation_list)
         except TypeError:
             dict_file = {'Time' : 3600}
-            with open(r'time.yaml', 'w', encoding='utf-8') as wfile:
+            with open(r'notificationsuppression/time.yaml', 'w', encoding='utf-8') as wfile:
                 yaml.dump(dict_file, wfile)
 
     def creator(self,counter):
         timenow = datetime.datetime.now()
         timenow = int(timenow.strftime("%Y%m%d%H%M%S"))
-        with open(r'time.yaml', 'r', encoding='utf-8') as rfile:
+        with open(r'notificationsuppression/time.yaml', 'r', encoding='utf-8') as rfile:
             violation_list = yaml.load(rfile, Loader=yaml.FullLoader)
         if counter == 1:
             violation_list[self.cam_name][self.v_type] = timenow
@@ -27,12 +27,12 @@ class suppressor:
             dicts = {}
             dicts[self.v_type] = timenow
             violation_list[self.cam_name] = dicts
-        with open(r'time.yaml', 'w', encoding='utf-8') as wfile:
+        with open(r'notificationsuppression/time.yaml', 'w', encoding='utf-8') as wfile:
             yaml.dump(violation_list, wfile)
 
     def checker(self):
         self.creation()
-        with open(r'time.yaml', 'r', encoding='utf-8') as rfile:
+        with open(r'notificationsuppression/time.yaml', 'r', encoding='utf-8') as rfile:
             violation_list = yaml.load(rfile, Loader=yaml.FullLoader)
         try:
             lastviolationtime = violation_list[self.cam_name]
